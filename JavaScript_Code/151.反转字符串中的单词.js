@@ -9,8 +9,15 @@
  * @param {string} s
  * @return {string}
  */
-var reverseWords = function(s) {
-
+var reverseWords = function (s) {
+  let arrStr = s.split(' ');
+  let newStr = [];
+  for (let j = arrStr.length - 1; j >= 0; j--) {
+    if (arrStr[j]) {
+      newStr.push(arrStr[j]);
+    }
+  }
+  return newStr.join(' ');
 };
 // @lc code=end
 
