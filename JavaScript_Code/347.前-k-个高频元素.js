@@ -7,7 +7,7 @@
 // @lc code=start
 /**
  * @param {number[]} nums
- * @param {number} k
+ * @param {number} 
  * @return {number[]}
  */
 //堆排序,本次解法不采用堆排序
