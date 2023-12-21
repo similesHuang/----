@@ -19,22 +19,23 @@
  */
 //后序遍历
 var isBalanced = function (root) {
-  const getHeight = function (root) {
-    //终止条件
-    if (!root) return 0;
-    let leftHeight = getHeight(root.left);
-    if (leftHeight === -1) return -1;//-1代表不符合平衡二叉树
-    let rightHeight = getHeight(root.right);
+  const getHeight = function (node) {
+    // 终止条件
+    if (!node) return 0;
+    let leftHeight = getHeight(node.left);
+    if (leftHeight === -1) return -1;
+    let rightHeight = getHeight(node.right);
     if (rightHeight === -1) return -1;
-    let result;//result记录是否符合的平衡二叉树
-    //左右子树高度差大于1，返回-1；
+    //中
+    let result;
     if (Math.abs(leftHeight - rightHeight) > 1) result = -1;
-    else result = Math.max(leftHeight, rightHeight) + 1;//左右子树符合，则当前节点高度为较大的子树+1
+    else {
+      result = Math.max(leftHeight, rightHeight) + 1;
+    }
     return result;
   }
-  let result = getHeight(root);
-  if (result === -1) return false;
-  else return true;
+  if (getHeight(root) === -1) return false;
+  return true;
 };
 // @lc code=end
 
