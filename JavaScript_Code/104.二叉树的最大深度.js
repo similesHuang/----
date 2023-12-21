@@ -19,16 +19,29 @@
  */
 //递归法
 var maxDepth = function (root) {
-  //1.确定递归的参数和返回值，参数为树的各个节点，返回值为高度数；
-  //2.确定终止条件。当root===null，return 0;
-  //3.单层递归逻辑
+  //先序遍历
+  let maxDepth = 0;
+  let dfs = function (root, curDepth) {
+    //终止条件
+    if (!root.left && !root.right) {
+      if (curDepth > maxDepth) {
+        maxDepth = curDepth;
+      }
+    };
+    if (root.left) {
+      curDepth++;
+      dfs(root.left, curDepth);
+      curDepth--;
+    }
+    if (root.right) {
+      curDepth++;
+      dfs(root.right, curDepth);
+      curDepth--;
+    }
+  };
   if (!root) return 0;
-  //左子树的最大宽度
-  let maxLeft = maxDepth(root.left);
-  //右子树的最大深度
-  let maxRight = maxDepth(root.right);
-  //返回值+1
-  return Math.max(maxLeft, maxRight) + 1;
+  dfs(root, 1);
+  return maxDepth;
 }
 
 // @lc code=end

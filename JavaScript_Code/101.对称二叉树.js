@@ -17,18 +17,20 @@
  * @param {TreeNode} root
  * @return {boolean}
  */
+//后续遍历
 var isSymmetric = function (root) {
   if (!root) return true;
-  function isMirror(left, right) {
-    if (!left && !right) return true;
-    if (!left || !right) return false;
-    if (left.val !== right.val) return false;
-    let outside = isMirror(left.left, right.right);
-    let inside = isMirror(left.right, right.left);
-    return outside && inside;
-  }
-  let flag = isMirror(root.left, root.right);
-  return flag;
+  //后序遍历
+  let isMirror = function (leftNode, rightNode) {
+    //终止条件
+    if (!leftNode && !rightNode) return true;
+    if (!leftNode || !rightNode) return false;
+    if (leftNode.val !== rightNode.val) return false;
+    let left = isMirror(leftNode.left, rightNode.right);
+    let right = isMirror(leftNode.right, rightNode.left);
+    return left && right;
+  };
+  return isMirror(root.left, root.right);
 };
 // @lc code=end
 

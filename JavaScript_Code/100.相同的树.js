@@ -18,14 +18,16 @@
  * @param {TreeNode} q
  * @return {boolean}
  */
+//先序遍历
 var isSameTree = function (p, q) {
-  if (!p && q) return false;
-  if (p && !q) return false;
+  //终止条件
   if (!p && !q) return true;
+  if (!p || !q) return false;
   if (p.val !== q.val) return false;
-  let leftFlag = isSameTree(p.left, q.left);
-  let rightFlag = isSameTree(p.right, q.right);
-  return leftFlag && rightFlag;
+  let left = isSameTree(p.left, q.left);
+  let right = isSameTree(p.right, q.right);
+  //中
+  return left && right;
 };
 // @lc code=end
 

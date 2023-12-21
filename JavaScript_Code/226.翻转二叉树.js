@@ -19,7 +19,8 @@
  */
 var invertTree = function (root) {
   //递归法，先序遍历
-  if (!root) return null;
+  if (!root) return root;
+  //先
   let node = root.right;
   root.right = root.left;
   root.left = node;

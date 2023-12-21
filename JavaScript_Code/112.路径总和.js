@@ -19,36 +19,27 @@
  * @return {boolean}
  */
 var hasPathSum = function (root, targetSum) {
-  let result = [];
-  let getResult = function (node, pathNodes) {
+  if (!root) return false;
+  let getSum = function (node, curSum, targetSum) {
     //终止条件
-    if (!node) return;
     if (!node.left && !node.right) {
-      //将叶子节点加入pathNodes中
-      pathNodes.push(node);
-      let sum = 0;
-      for (let pathNode of pathNodes) {
-        sum += pathNode.val;
-      };
-      result.push(sum);
-      return;
-    };
-    //中
-    pathNodes.push(node);
-    //左
+      if (curSum === targetSum) return true;
+    }
     if (node.left) {
-      getResult(node.left, pathNodes);
-      pathNodes.pop();
+      curSum += node.left.val;
+      let res = getSum(node.left, curSum, targetSum);
+      if (res) return res;
+      curSum -= node.left.val;
     };
-    //右
     if (node.right) {
-      getResult(node.right, pathNodes);
-      pathNodes.pop();
+      curSum += node.right.val;
+      let res = getSum(node.right, curSum, targetSum);
+      if (res) return res;
+      curSum -= node.right.val;
     };
-  };
-  getResult(root, []);
-  if (result.includes(targetSum)) return true;
-  return false;
+    return false;
+  }
+  return getSum(root, root.val, targetSum);
 };
 // @lc code=end
 
