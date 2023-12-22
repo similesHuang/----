@@ -18,6 +18,7 @@
  * @return {number}
  */
 //递归法
+/*
 var maxDepth = function (root) {
   //先序遍历
   let maxDepth = 0;
@@ -42,6 +43,14 @@ var maxDepth = function (root) {
   if (!root) return 0;
   dfs(root, 1);
   return maxDepth;
+}
+*/
+var maxDepth = function (root) {
+  //后续遍历
+  if (!root) return 0;
+  let leftDepth = maxDepth(root.left);
+  let rightDepth = maxDepth(root.right);
+  return Math.max(leftDepth, rightDepth) + 1;
 }
 
 // @lc code=end
