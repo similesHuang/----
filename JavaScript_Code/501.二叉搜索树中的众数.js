@@ -17,6 +17,7 @@
  * @param {TreeNode} root
  * @return {number[]}
  */
+/*
 var findMode = function (root) {
   let map = new Map();
   let getValue = function (root) {
@@ -33,5 +34,39 @@ var findMode = function (root) {
   }
   return res;
 };
+*/
+
+//中序遍历
+var findMode = function (root) {
+  // 不使用额外空间，使用中序遍历,设置出现最大次数初始值为1
+  let maxCount = 1;
+  let count = 0;
+  let pre = null;
+  let res = [];
+  let getCount = function (cur) {
+    if (!cur) return;
+    //前
+    getCount(cur.left);
+    //单层递归逻辑
+    if (pre && pre.val === cur.val) {
+      count++;
+    } else {
+      count = 1;
+    };
+    //记录前指针
+    pre = cur;
+    if (count === maxCount) {
+      res.push(cur.val)
+    };
+    if (count > maxCount) {
+      maxCount = count;
+      res = [];
+      res.push(cur.val);
+    };
+    getCount(cur.right);
+  };
+  getCount(root);
+  return res;
+}
 // @lc code=end
 

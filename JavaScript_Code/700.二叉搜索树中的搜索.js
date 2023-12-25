@@ -21,18 +21,16 @@
 var searchBST = function (root, val) {
   //终止条件
   if (!root) return null;
-  //先序遍历
-  //中
   if (root.val === val) return root;
-  let rightNode = null;
+  let result = null;
   if (root.val < val) {
-    rightNode = searchBST(root.right, val);
+    result = searchBST(root.right, val);
   };
-  let leftNode = null;
+
   if (root.val > val) {
-    leftNode = searchBST(root.left, val);
+    result = searchBST(root.left, val);
   };
-  return leftNode || rightNode;
+  return result;
 };
 // @lc code=end
 
