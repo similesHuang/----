@@ -52,7 +52,7 @@ var getMinimumDifference = function (root) {
     inorder(node.right)
   }
   inorder(root)
-  return res
+  return res;
 }
 // @lc code=end
 

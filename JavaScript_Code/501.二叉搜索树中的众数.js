@@ -53,8 +53,6 @@ var findMode = function (root) {
     } else {
       count = 1;
     };
-    //记录前指针
-    pre = cur;
     if (count === maxCount) {
       res.push(cur.val)
     };
@@ -63,6 +61,9 @@ var findMode = function (root) {
       res = [];
       res.push(cur.val);
     };
+    //记录前指针
+    pre = cur;
+    //后
     getCount(cur.right);
   };
   getCount(root);
