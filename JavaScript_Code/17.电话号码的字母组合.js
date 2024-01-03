@@ -23,30 +23,28 @@ function getMap() {
   return phoneNumberMap;
 }
 var letterCombinations = function (digits) {
-  //先将其转为数组
-  let digitsArr = Array.from(digits);
-  let size = digitsArr.length;
-  if (digitsArr.length === 0) {
-    return []
+  if (!digits.length) {
+    return [];
   }
   let result = [];
-  let path = [];
+  let paths = [];
+  let size = digits.length;
   let map = getMap();
-  let backTrack = function (arr, size) {
-    //终止条件
-    if (path.length === size) {
-      result.push(path.join(''));
+  let backTrack = function (digits, startIndex) {
+    if (paths.length === size) {
+      result.push(paths.join(''));
       return;
-    }
-    let key = arr.shift();
-    let mapValues = map.get(key);
-    for (let item of mapValues) {
-      path.push(item);
-      backTrack(arr, size);
-      path.pop();
+    };
+    //获取字段第一个元素
+    let startKey = digits[startIndex];
+    let arr = map.get(startKey);
+    for (let item of arr) {
+      paths.push(item);
+      backTrack(digits, startIndex + 1);
+      paths.pop();
     }
   }
-  backTrack(digitsArr, size);
+  backTrack(digits, 0);
   return result;
 };
 // @lc code=end
