@@ -31,6 +31,7 @@ var twoSum = function (nums, target) {
     if (!map.has(searchValue)) {
       //将遍历的元素放入map中
       map.set(nums[i], i);
+
     } else {
       return [i, map.get(searchValue)];
     }

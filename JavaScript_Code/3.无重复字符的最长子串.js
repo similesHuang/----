@@ -14,22 +14,21 @@ function hasDuplicate(collection) {
   return set.size !== collection.length;
 }
 var lengthOfLongestSubstring = function (s) {
-  //最长套用模板1
-  let left = 0, right = 0, maxLength = 0;
+  let bestLength = 0;
   let result = [];
+  let left = 0, right = 0;
   while (right < s.length) {
+    //寻找最长
     result.push(s[right]);
     //不满足条件时
     while (hasDuplicate(result)) {
       result.shift();
-      left++;
+      left++
     }
-    //更新最长长度
-    maxLength = result.length > maxLength ? result.length : maxLength;
+    bestLength = Math.max(bestLength, result.length);
     right++;
   }
-
-  return maxLength;
+  return bestLength;
 };
 // @lc code=end
 
