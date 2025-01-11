@@ -10,15 +10,22 @@
  * @return {string[][]}
  */
 var groupAnagrams = function (strs) {
-  const map = new Map();
-  for (let item of strs) {
-    let arr = Array.from(item);
+  let map = new Map();
+  for (let str of strs) {
+    let arr = Array.from(str);
     let key = arr.sort().toString();
-    let list = map.get(key) ? map.get(key) : new Array();
-    list.push(item);
-    map.set(key, list);
-  };
-  return Array.from(map.values());
+    if (map.get(key)) {
+      let list = map.get(key);
+      list.push(str);
+      map.set(key, list)
+    } else {
+      let list = [];
+      list.push(str)
+      map.set(key, list)
+    }
+  }
+  let result = Array.from(map.values())
+  return result
 };
 // @lc code=end
 
